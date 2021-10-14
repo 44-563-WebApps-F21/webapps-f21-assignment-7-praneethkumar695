@@ -18,42 +18,49 @@
             "img-11", "img-12", "img-13", "img-14", "img-15", "img-16", "img-17", "img-18", "img-19", "img-20", "img-21", "img-22",
             "img-23", "img-24"];
 
-            let triesCount=0;
-            let animalLocation=13;
-            console.log(animalLocation);
-            function check(position)
-            {
-                let index=position;
-                let imageId=imageIds[index];
-                let element=document.getElementById(imageId);
-                if(position===animalLocation)
-                {
-                    document.getElementById(imageId).src = 'images/Deer.jpg';
-                    triesCount=triesCount+1;
-                }
-                else{
-                    document.getElementById(imageId).src = 'images/Dirt.jpg';
-                    triesCount=triesCount+1;
-                }
-
-                document.getElementById("tries").innerHTML=triesCount;
-
-                let s=distance(position, animalLocation);
-
-                document.getElementById("distance").innerHTML = s;
+        let triesCount = 0;
+        let animalLocation = 13;
+        function check(position) {
+            let index = position;
+            let imageId = imageIds[index];
+            let element = document.getElementById(imageId);
+            if (position === animalLocation) {
+                document.getElementById(imageId).src = 'images/Deer.jpg';
+                triesCount = triesCount + 1;
+            }
+            else {
+                document.getElementById(imageId).src = 'images/Dirt.jpg';
+                triesCount = triesCount + 1;
             }
 
-            function distance(pos1, pos2)
-            {
-                let pos1xCoordinates=pos1/6 |0;
-                let pos1yCoordinates=pos1%6;
-                let pos2xCoordinates=pos2/6 |0;
-                let pos2yCoordinates=pos2%6;
-                
-                let horizantalDistance=Math.abs(pos1xCoordinates-pos2xCoordinates);
-                let verticalDistance=Math.abs(pos1yCoordinates-pos2yCoordinates);
-                return horizantalDistance>verticalDistance?horizantalDistance:verticalDistance;
+            document.getElementById("tries").innerHTML = triesCount;
+
+            let s = distance(position, animalLocation);
+
+            document.getElementById("distance").innerHTML = s;
+        }
+
+        function distance(pos1, pos2) {
+            let pos1xCoordinates = pos1 / 6 | 0;
+            let pos1yCoordinates = pos1 % 6;
+            let pos2xCoordinates = pos2 / 6 | 0;
+            let pos2yCoordinates = pos2 % 6;
+
+            let horizantalDistance = Math.abs(pos1xCoordinates - pos2xCoordinates);
+            let verticalDistance = Math.abs(pos1yCoordinates - pos2yCoordinates);
+            return horizantalDistance > verticalDistance ? horizantalDistance : verticalDistance;
+        }
+
+        function newGame() {
+            triesCount = 0;
+            animalLocation = Math.random() * 24 | 0;
+            document.getElementById("distance").innerHTML = 0;
+            document.getElementById("tries").innerHTML = 0;
+
+            for (var i = 0; i < 24; i++) {
+                document.getElementById(imageIds[i]).src = "images/Tree.jpeg";
             }
+        }
     </script>
 </head>
 
@@ -64,6 +71,8 @@
         <div class="lead" style="color:royalblue">Click the square to search for wild life</div>
         <div class="lead" style="color:goldenrod;">Number of tries is:<span id="tries">Zero</span></div>
         <div class="lead" style="color:mediumaquamarine;">Distance is:<span id="distance">unknown</span></div>
+        <button onclick="newGame()">New Game</button>
+        <br>
         <br>
         <div class="row">
             <div class="col-sm-2">

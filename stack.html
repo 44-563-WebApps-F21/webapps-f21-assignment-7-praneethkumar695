@@ -81,29 +81,24 @@
     }
 
     function unique() {
-        debugger;
-        let stackItems = document.getElementsByClassName("stack")
-        let stackItemsLength = stackItems.length;
-        stackItems.reverse;
-        let mapstackItems=stackItems.map();
-        
-        for (let i = 0; i <= stackItemsLength; i++) {
-            let duplicated=0;
-            let arrayItem = stackItems[i].innerHTML;
-            let stackLength=stackItems.length;
-            for (let j = stackLength-1; j >= 0; j--) {
-                if (arrayItem === stackItems[j].innerHTML) {
-                    duplicated++;
-                    if(duplicated>1)
-                    {
-                        stackItems[j].remove();
-                    }
-                   
-                }
-            }
+        let stackItems = document.getElementsByClassName('stack');
+		for (let i = 0; i < stackItems.length; i++) {
+				let firstarray = stackItems[i].innerHTML;
+				for (let j = i+1; j < stackItems.length; j++) {
+					let secondarray = stackItems[j].innerHTML;
 
-        }
-        stackItems.reverse;
+					if (firstarray == secondarray) {
+					stackItems[i].remove();
+					j--;
+					i--;
+				}
+
+					
+				}
+				
+			}
+
+
     }
       
 </script>
